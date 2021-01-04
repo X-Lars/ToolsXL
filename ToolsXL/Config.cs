@@ -13,7 +13,7 @@ namespace ToolsXL
     /// <summary>
     /// Provides an intuitive way for storing and retreiving a configuration or any other POCO class into and from the app config.
     /// </summary>
-    /// <typeparam name="T">A <see cref="T"/> specifying the type of class to store or retreive.</typeparam>
+    /// <typeparam name="T">A <typeparamref name="T"/> specifying the type of class to store or retreive.</typeparam>
     public static class Config<T> where T : class, new()
     {
         #region Fields
@@ -82,7 +82,7 @@ namespace ToolsXL
         /// <summary>
         /// Gets the <see cref="Config{T}"/> associated class from the App.config to get or set a value.
         /// </summary>
-        /// <returns>The class <see cref="T"/> from the App.config.</returns>
+        /// <returns>The class <typeparamref name="T"/> from the App.config.</returns>
         public static T Get
         {
             get
@@ -96,7 +96,7 @@ namespace ToolsXL
         /// <summary>
         /// Gets the <see cref="Config{T}"/> associated class from the App.config to get or set a value.
         /// </summary>
-        /// <returns>The class <see cref="T"/> from the App.config.</returns>
+        /// <returns>The class <typeparamref name="T"/> from the App.config.</returns>
         public static T Set
         {
             get
@@ -273,7 +273,7 @@ namespace ToolsXL
         /// Saves the <see cref="Config{T}"/> associated class into the App.config, if <paramref name="config"/> is provided the current class configuration is overwritten.
         /// </summary>
         /// <param name="config">A class <see cref="T"/> to save..</param>
-        /// <returns>A class <see cref="T"/> with updated properties.</returns>
+        /// <returns>A class <typeparamref name="T"/> with updated properties.</returns>
         public static T Save(T config = null)
         {
             if (config != null)
