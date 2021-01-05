@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace ToolsXL
 {
@@ -7,7 +9,7 @@ namespace ToolsXL
     /// </summary>
     /// <typeparam name="T">A <see cref="T"/> specifying the type of enumeration to uses.</typeparam>
     /// <remarks><i>The specified <typeparamref name="T"/> has to be decorated with the [Flags] attribute.</i></remarks>
-    public class Status<T> where T: Enum
+    public class Status<T> where T: Enum, INotifyPropertyChanged
     {
         #region Fields
 
@@ -66,9 +68,13 @@ namespace ToolsXL
             get { return _Flags; }
             private set
             {
+                if (Convert.ToInt32(_Flags) == Convert.ToInt32(value))
+                    return;
+
                 _Flags = value;
 
                 Changed?.Invoke(this, new StatusChangeEventArgs<T>(_Flags));
+                NotifyPropertyChanged();
             }
         }
 
@@ -219,6 +225,25 @@ namespace ToolsXL
         public override int GetHashCode()
         {
             return base.GetHashCode();
+        }
+
+        #endregion
+
+        #region INotifyPropertyChanged
+
+        /// <summary>
+        /// Event raised when a property value is changed.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Raises the <see cref="PropertyChanged"/> event for the specified property.
+        /// </summary>
+        /// <param name="propertyName">A <see cref="string"/> containing the name of the property that is changed.</param>
+        /// <remarks><i>If no property name is specified, the actual name of the property in code is used.</i></remarks>
+        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         #endregion
