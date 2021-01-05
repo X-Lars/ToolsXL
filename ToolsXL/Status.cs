@@ -9,7 +9,7 @@ namespace ToolsXL
     /// </summary>
     /// <typeparam name="T">A <see cref="T"/> specifying the type of enumeration to uses.</typeparam>
     /// <remarks><i>The specified <typeparamref name="T"/> has to be decorated with the [Flags] attribute.</i></remarks>
-    public class Status<T> where T: Enum, INotifyPropertyChanged
+    public class Status<T> : INotifyPropertyChanged where T: Enum
     {
         #region Fields
 
