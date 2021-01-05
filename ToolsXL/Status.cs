@@ -152,6 +152,20 @@ namespace ToolsXL
         }
 
         /// <summary>
+        /// Overloads the equals operator to compare two <see cref="Status{T}"/> classes <see cref="Flags"/>.
+        /// </summary>
+        /// <param name="status">The LHS <see cref="Status{T}"/> to compare.</param>
+        /// <param name="flags">The RHS <see cref="Status{T}"/> to compare to.</param>
+        /// <returns>A <see cref="bool"/> containing true if both <see cref="Status{T}.Flags"/> properties are equal, false otherwise.</returns>
+        public static bool operator ==(Status<T> lhs, Status<T> rhs)
+        {
+            int l = Convert.ToInt32(lhs.Flags);
+            int r = Convert.ToInt32(rhs.Flags);
+
+            return l == r;
+        }
+
+        /// <summary>
         /// Overloads the not equals operator to compare the <see cref="Status{T}"/> with a <typeparamref name="T"/>.
         /// </summary>
         /// <param name="status">The LHS <see cref="Status{T}"/> to compare.</param>
@@ -166,6 +180,20 @@ namespace ToolsXL
                 return lhs != 0;
 
             return !status.Flags.HasFlag(flags);
+        }
+
+        /// <summary>
+        /// Overloads the not equals operator to compare two <see cref="Status{T}"/> classes <see cref="Flags"/>.
+        /// </summary>
+        /// <param name="status">The LHS <see cref="Status{T}"/> to compare.</param>
+        /// <param name="flags">The RHS <see cref="Status{T}"/> to compare to.</param>
+        /// <returns>A <see cref="bool"/> containing false if the <see cref="Status{T}.Flags"/> don't match, false otherwise.</returns>
+        public static bool operator !=(Status<T> lhs, Status<T> rhs)
+        {
+            int l = Convert.ToInt32(lhs.Flags);
+            int r = Convert.ToInt32(rhs.Flags);
+
+            return l != r;
         }
 
         #endregion
