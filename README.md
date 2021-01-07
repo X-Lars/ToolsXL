@@ -2,7 +2,7 @@
 
 ## Config
 
-Provides a way to store custom classes into the the App.config file.
+Provides a way to store custom classes into the the App.config file and access the properties in an intuitive way.
 If your custom class implements the INotifyPropertyChanged interface changes made to properties are automatically saved to the App.config file, else the custom class is saved when the program exits. Supports most CLR types and enums, could be easily extended if you wish.
 
 
@@ -46,6 +46,6 @@ Modifying a property using SetProperty() will save the property even if the conf
     Config<ExampleConfigManual>.SetProperty("Name", "Another modification");
 </code>
 
-If the program closes normally, the configuration is automatically saved and you don't have to call the Save() method. But just to be sure, use the Save() method after you made your changes or use the SetProperty() method if you don't want to implement INotifyPropertyChanged, if the program closes in an abnormal way your changes are lost. This is the case when you close the Console window of the example application with the close button.
+If the program closes normally, the configuration is automatically saved and you don't have to call the Save() method. But just to be sure, use the Save() method after you made your changes or use the SetProperty() method if you don't want to implement INotifyPropertyChanged, if the program closes in an abnormal way your changes are lost.
 
 The Config.cs file contains all functional code, just copy and paste in your own project if you like.
