@@ -41,3 +41,51 @@ Modifying a property using SetProperty() will save the property even if the conf
 If the program closes normally, the configuration is automatically saved and you don't have to call the Save() method. But just to be sure, use the Save() method after you made your changes or use the SetProperty() method if you don't want to implement INotifyPropertyChanged, if the program closes in an abnormal way your changes are lost.
 
 The Config.cs file contains all functional code, just copy and paste in your own project if you like.
+
+
+## Status
+
+Provides a wrapper for bitwise operations on a status flag or any other enumeration.
+
+### Examples
+
+    // Define the enumeration to use
+    [Flags]
+    enum StatusFlags
+    {
+        DEVICE_READY = 0,
+        DEVICE_ERROR = 1,
+        DEVICE_BUSY  = 2,
+        DEVICE_INIT  = 4
+    }
+    
+    // Create the Status class
+    Status<StatusFlags> deviceStatus = new Status<StatusFlags>(StatusFlags.DEVICE_INIT);
+    
+    // Override the status flags
+    deviceStatus = StatusFlags.DEVICE_READY;
+    
+    // Assign the Status class to a StatusFlags enumeration
+    StatusFlags flags;
+    flags = deviceStatus;
+    
+    // Set a flag
+    deviceStatus += StatusFlags.DEVICE_BUSY;
+    
+    // Check if a flag is set
+    if(deviceStatus == StatusFlags.DEVICE_ERROR)
+    {
+        // Do something...
+    }
+    
+    // Check if a flag is not set
+    if(deviceStatus != StatusFlags.DEVICE_READY)
+    {
+        // Do something else...
+    }
+    
+    // Clear a flag
+    deviceStatus -= StatusFlags.DEVICE_ERROR
+    
+The Status.cs file contains all functional code, just copy and paste in your own project if you like.
+ 
