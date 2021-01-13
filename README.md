@@ -45,7 +45,7 @@ The Config.cs file contains all functional code, just copy and paste in your own
 
 ## Status
 
-Provides a wrapper for bitwise operations on a status flag or any other enumeration.
+Provides a wrapper for bitwise operations on a status flag or any other enumeration with the flag attribute applied.
 
 ### Examples
 
