@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace ToolsXL
+namespace ToolsXL.Status
 {
     /// <summary>
     /// Extends a flags enumeration with operators for addition, substraction and equasion of flags.
@@ -241,7 +241,7 @@ namespace ToolsXL
         /// </summary>
         /// <param name="propertyName">A <see cref="string"/> containing the name of the property that is changed.</param>
         /// <remarks><i>If no property name is specified, the actual name of the property in code is used.</i></remarks>
-        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+        protected void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

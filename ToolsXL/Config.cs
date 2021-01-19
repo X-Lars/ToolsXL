@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ToolsXL
+namespace ToolsXL.Config
 {
     /// <summary>
     /// Provides an intuitive way for storing and retreiving a configuration or any other POCO class into and from the app config.
