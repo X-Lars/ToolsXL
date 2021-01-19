@@ -5,7 +5,7 @@ namespace ToolsXL.Extensions
     public static class StringExtensions
     {
         /// <summary>
-        /// Compares the <see cref="string"/>
+        /// Compares the <see cref="string"/> against the specified filter.
         /// </summary>
         /// <param name="source">The <see cref="string"/> to compare.</param>
         /// <param name="filter">A <see cref="string"/> specifying the pattern to match.</param>
