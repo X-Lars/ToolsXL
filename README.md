@@ -89,3 +89,36 @@ Provides a wrapper for bitwise operations on a status flag or any other enumerat
     
 The Status.cs file contains all functional code, just copy and paste in your own project if you like.
  
+
+## String extension LIKE operator
+
+Extends the string to mimic the SQL LIKE operator. Use * to match any number of characters, use ? for a single character. Options are case matching and implicit wildcard prefix and postfix to start matching at any position. An extra little feature is that you can use a <space> as wildcard, it implicitly gets converted to an * in the background. Usefull? Not in the below example, but if you do real time filtering on a list of sentences it makes sense. Searching for 'The Quick Brown Fox Jumps Over The Lazy Dog' becomes as easy as typing 't q b '. Have fun with it.
+
+### Examples
+    
+    string s = "ABCDEFG";
+
+    // Case insensitive, respect start and end
+    s.Like("ABC*"); // True     
+    s.Like("BCD*"); // False
+
+    // Case sensitive, respect start and end
+    s.Like("ABCD*", LikeOptions.MatchCase); // True
+    s.Like("ABcd*", LikeOptions.MatchCase); // False
+
+    // Case insensitive, implicit prefix & postfix wildcard
+    s.Like("CD", LikeOptions.Implicit); // True => *CD*
+    s.Like("AB", LikeOptions.Implicit); // True => *AB*
+
+    // Case sensitive, implicit prefix & postfix wildcard
+    s.Like("CD", LikeOptions.MatchCase | LikeOptions.Implicit); // True  => *CD*
+    s.Like("cd", LikeOptions.MatchCase | LikeOptions.Implicit); // False => *cd*
+
+    // Case insensitive, respect start and end, space as wildcard
+    s.Like("ABC G"); // True  => ABC*G
+    s.Like(" CDEF"); // False => *CDEF
+    s.Like(" CDE "); // True  => *CDE*
+
+    // Case insensitive, respect start and end, single character
+    s.Like("ABC??FG"); // True
+    s.Like("A?CDEF?"); // True
