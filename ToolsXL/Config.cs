@@ -267,6 +267,26 @@ namespace ToolsXL.Config
         }
 
         /// <summary>
+        /// Gets the provided property value.
+        /// </summary>
+        /// <param name="key">A <see cref="string"/> specifying the property to get.</param>
+        /// <returns>An <see cref="string"/> representation of the specified property value.</returns>
+        public static string GetProperty(string key)
+        {
+            if (key == null || key == string.Empty)
+            {
+                throw new ConfigurationException($"{nameof(Config<T>)}<{_ConfigName}>.{nameof(GetProperty)}() no valid key provided.");
+            }
+
+            PropertyInfo property = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(p => p.Name == key).FirstOrDefault();
+
+            if(property == null)
+                return null;
+
+            return (string)property.GetValue(_Config);
+        }
+
+        /// <summary>
         /// Saves the <see cref="Config{T}"/> associated class into the App.config, if <paramref name="config"/> is provided the current class configuration is overwritten.
         /// </summary>
         /// <param name="config">A class <see cref="T"/> to save..</param>
